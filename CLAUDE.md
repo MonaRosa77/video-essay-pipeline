@@ -25,6 +25,14 @@ A knowledge system that fetches video transcripts, analyzes arguments with domai
 - Distinguish between the video creator's original arguments vs. ideas they're citing from other thinkers.
 - Flag any claims that seem factually questionable and note them for verification.
 
+## Storage Model
+
+Content (transcripts, analyses, essays, research) lives on **GitHub only** — not in the local working tree. Only pipeline files (scripts, `.claude/`, config) are kept locally via `git sparse-checkout`.
+
+- **After creating content:** `git add` → `git commit` → auto-pushed by post-commit hook → `git sparse-checkout reapply` removes local copies
+- **To read content:** `git checkout origin/main -- <path>` to pull temporarily, or `git show origin/main:<path>` to read without checkout
+- **To list remote content:** `git ls-tree -r --name-only origin/main <dir>/`
+
 ## Scripts
 
 ```bash

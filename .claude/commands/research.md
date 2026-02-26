@@ -26,7 +26,11 @@ If a channel is provided:
 python3 ~/video-essay-pipeline/yt-channel.py <channel> --sort popular --limit <N>
 ```
 
-If no channel, check what transcripts already exist for this topic area. List them and ask the user which to include, or if they want to provide URLs.
+If no channel, check what transcripts already exist on GitHub for this topic area:
+```bash
+git ls-tree -r --name-only origin/main transcripts/<topic>/
+```
+List them and ask the user which to include, or if they want to provide URLs.
 
 ### 3. Fetch transcripts
 For each video that doesn't already have a transcript:
@@ -85,8 +89,19 @@ Save to `research/<topic>/synthesis_<keyword>_<date>.md`
 
 Create the directory if it doesn't exist.
 
-### 7. Report
+### 7. Commit and clean up
+Commit all new content to GitHub:
+```bash
+git add transcripts/ analyses/ research/
+git commit -m "Research: <topic> (<N> videos)"
+```
+The post-commit hook auto-pushes. Then clean up local content:
+```bash
+git sparse-checkout reapply
+```
+
+### 8. Report
 Tell the user:
 - How many videos were fetched and analyzed
-- Where the synthesis document was saved
+- Where the synthesis document was saved (GitHub path)
 - Top 3 essay candidates identified

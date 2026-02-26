@@ -15,6 +15,11 @@ Examples:
 ## Workflow
 
 ### 1. Gather source material
+Content lives on GitHub, not locally. Pull the needed files first:
+```bash
+git checkout origin/main -- analyses/<topic>/
+git checkout origin/main -- research/<topic>/ 2>/dev/null
+```
 Read all analyses in `analyses/<topic>/<channel>/`. If no channel specified, read all analyses under the topic.
 
 Also check `research/<topic>/` for any synthesis documents.
@@ -87,9 +92,20 @@ Save to `essays/<topic>/<channel>/essay_<keyword>_<date>.md`
 
 Use today's date in YYYY-MM-DD format for `<date>`.
 
-### 5. Report
+### 5. Commit and clean up
+Commit the essay and any content files to GitHub:
+```bash
+git add essays/ analyses/ research/
+git commit -m "Add essay draft: <keyword>"
+```
+The post-commit hook auto-pushes. Then clean up local content:
+```bash
+git sparse-checkout reapply
+```
+
+### 6. Report
 Tell the user:
-- Where the essay was saved
+- Where the essay was saved (GitHub path)
 - Word count
 - Which arguments feel strongest and weakest
 - Suggested next steps (additional sources, counterarguments to research, sections to expand)

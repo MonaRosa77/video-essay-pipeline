@@ -42,9 +42,21 @@ Save to `analyses/<topic>/<channel>/analysis_<keyword>_<video_id>.md`
 
 The `<keyword>` should be a short (1-3 word) lowercase slug identifying the video's subject (e.g., `aurelius`, `scalping-reversal`, `mcp-architecture`).
 
-### 7. Report
+### 7. Commit and push to GitHub
+Content is stored on GitHub, not locally. After saving both files:
+```bash
+git add transcripts/ analyses/
+git commit -m "Add transcript + analysis: <keyword> (<video_id>)"
+```
+The post-commit hook auto-pushes. Then clean up local content:
+```bash
+git sparse-checkout reapply
+```
+This removes the transcript and analysis from the working tree (they're safely on GitHub).
+
+### 8. Report
 Tell the user:
-- Where the transcript was saved
-- Where the analysis was saved
+- Where the transcript was saved (GitHub path)
+- Where the analysis was saved (GitHub path)
 - A 2-3 sentence summary of the video's central claim
 - Any factual claims that need verification
