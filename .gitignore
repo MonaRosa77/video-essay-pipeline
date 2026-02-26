@@ -1,0 +1,10 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Claude Code (private settings & memory)
+.claude/settings.local.json
+
+# macOS
+.DS_Store
