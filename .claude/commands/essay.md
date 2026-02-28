@@ -3,12 +3,12 @@
 Read analyses for a topic and generate a structured essay draft.
 
 ## Arguments
-- `$ARGUMENTS` — Topic slug (e.g., `western-philosophy`) optionally followed by `--thesis "<thesis statement>"` and `--channel <channel>`
+- `$ARGUMENTS` — Topic slug (e.g., `philosophy`) optionally followed by `--thesis "<thesis statement>"` and `--channel <channel>`
 
 Examples:
 ```
-/essay western-philosophy --channel michael-sugrue
-/essay western-philosophy --thesis "Stoic virtue ethics provides a more practical moral framework than Kantian deontology"
+/essay philosophy --channel michael-sugrue
+/essay philosophy --thesis "Stoic virtue ethics provides a more practical moral framework than Kantian deontology"
 /essay trading --channel axia-futures
 ```
 
@@ -17,12 +17,12 @@ Examples:
 ### 1. Gather source material
 Content lives on GitHub, not locally. Pull the needed files first:
 ```bash
-git checkout origin/main -- analyses/<topic>/
-git checkout origin/main -- research/<topic>/ 2>/dev/null
+git checkout origin/main -- research-topics/<topic>/analyses/
+git checkout origin/main -- research-topics/<topic>/research/ 2>/dev/null
 ```
-Read all analyses in `analyses/<topic>/<channel>/`. If no channel specified, read all analyses under the topic.
+Read all analyses in `research-topics/<topic>/analyses/`. If a channel is specified, filter by channel prefix in filenames (e.g., `analysis_michael-sugrue_*`).
 
-Also check `research/<topic>/` for any synthesis documents.
+Also check `research-topics/<topic>/research/` for any synthesis documents.
 
 List what was found and confirm with the user before proceeding.
 
@@ -88,14 +88,14 @@ List all analyses and transcripts used.
 ```
 
 ### 4. Save essay draft
-Save to `essays/<topic>/<channel>/essay_<keyword>_<date>.md`
+Save to `research-topics/<topic>/essays/essay_<channel>_<keyword>_<date>.md`
 
 Use today's date in YYYY-MM-DD format for `<date>`.
 
 ### 5. Commit and clean up
 Commit the essay and any content files to GitHub:
 ```bash
-git add essays/ analyses/ research/
+git add research-topics/
 git commit -m "Add essay draft: <keyword>"
 ```
 The post-commit hook auto-pushes. Then clean up local content:

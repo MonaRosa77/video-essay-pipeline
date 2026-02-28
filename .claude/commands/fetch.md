@@ -22,7 +22,7 @@ Read the saved transcript file in full.
 
 ### 4. Determine the domain
 Based on the transcript content, determine which domain this falls into:
-- **Philosophy/Ethics:** lectures on philosophers, moral theory, metaphysics, epistemology → `western-philosophy`
+- **Philosophy/Ethics:** lectures on philosophers, moral theory, metaphysics, epistemology → `philosophy`
 - **Trading/Order Flow:** scalping, futures, order flow, footprint charts, volume profile → `trading`
 - **Tech/AI:** software architecture, AI agents, developer tools, LLMs → `ai-agents`
 
@@ -38,14 +38,14 @@ Apply the matching domain analysis skill to produce a structured analysis. The a
 - Original vs. Cited Ideas distinction
 
 ### 6. Save analysis
-Save to `analyses/<topic>/<channel>/analysis_<keyword>_<video_id>.md`
+Save to `research-topics/<topic>/analyses/analysis_<channel>_<keyword>_<video_id>.md`
 
 The `<keyword>` should be a short (1-3 word) lowercase slug identifying the video's subject (e.g., `aurelius`, `scalping-reversal`, `mcp-architecture`).
 
 ### 7. Commit and push to GitHub
 Content is stored on GitHub, not locally. After saving both files:
 ```bash
-git add transcripts/ analyses/
+git add research-topics/
 git commit -m "Add transcript + analysis: <keyword> (<video_id>)"
 ```
 The post-commit hook auto-pushes. Then clean up local content:

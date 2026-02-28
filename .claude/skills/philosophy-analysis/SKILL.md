@@ -11,7 +11,7 @@ Use this skill when analyzing transcripts about:
 - Political philosophy and social theory
 - Religious philosophy and theology
 
-Topic slugs: `western-philosophy`, or any philosophy-related topic.
+Topic slugs: `philosophy`, or any philosophy-related topic.
 
 ## Analysis Template
 

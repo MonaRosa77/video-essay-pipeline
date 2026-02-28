@@ -1,15 +1,15 @@
 # /domain — Create or inspect a domain
 
-Set up a new topic/channel domain with the full directory tree, or inspect an existing one.
+Set up a new topic domain with the full directory tree, or inspect an existing one.
 
 ## Arguments
-- `$ARGUMENTS` — Topic name and optional channel, optionally followed by `--url <channel_url>`
+- `$ARGUMENTS` — Topic name, optionally followed by `--url <channel_url>`
 
 Examples:
 ```
-/domain psychology jung
+/domain psychology
 /domain eastern-philosophy --url @AcademyOfIdeas
-/domain trading ict
+/domain trading
 ```
 
 ## Workflow
@@ -17,7 +17,6 @@ Examples:
 ### 1. Parse arguments
 Extract:
 - **Topic**: first argument (will be kebab-cased)
-- **Channel** (optional): second argument (will be kebab-cased)
 - **URL** (optional): YouTube channel URL or handle for listing videos
 
 ### 2. Normalize names
@@ -28,13 +27,13 @@ Convert to lowercase-kebab-case:
 
 ### 3. Create directory tree
 ```
-transcripts/<topic>/<channel>/
-analyses/<topic>/<channel>/
-essays/<topic>/<channel>/
-research/<topic>/
+research-topics/<topic>/transcripts/
+research-topics/<topic>/analyses/
+research-topics/<topic>/essays/
+research-topics/<topic>/research/
 ```
 
-If channel is omitted, create only the topic-level directories.
+No channel subdirectories — channels are encoded in filenames.
 
 ### 4. List available videos (if URL provided)
 Run:

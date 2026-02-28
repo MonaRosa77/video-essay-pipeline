@@ -109,13 +109,15 @@ def main():
         out = a.output
     else:
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        t_dir = os.path.join(script_dir, "transcripts")
         if a.topic:
-            t_dir = os.path.join(t_dir, a.topic)
-        if a.channel:
-            t_dir = os.path.join(t_dir, a.channel)
+            t_dir = os.path.join(script_dir, "research-topics", a.topic, "transcripts")
+        else:
+            t_dir = os.path.join(script_dir, "transcripts")
         os.makedirs(t_dir, exist_ok=True)
-        out = os.path.join(t_dir, f"transcript_{vid}.md")
+        if a.channel:
+            out = os.path.join(t_dir, f"transcript_{a.channel}_{vid}.md")
+        else:
+            out = os.path.join(t_dir, f"transcript_{vid}.md")
     print(f"Fetching transcript for: {vid}")
     if a.whisper:
         print("Whisper mode forced via --whisper flag.")

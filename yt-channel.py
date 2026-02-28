@@ -77,6 +77,8 @@ def main():
     p.add_argument("--limit", type=int, default=None, help="Max videos (default: all)")
     p.add_argument("--fetch", action="store_true", help="Also fetch transcripts")
     p.add_argument("--lang", nargs="+", default=None, help="Preferred transcript languages")
+    p.add_argument("--topic", default=None, help="Topic slug for yt-fetch.py (e.g. philosophy, trading)")
+    p.add_argument("--channel", default=None, help="Channel slug for yt-fetch.py (e.g. axia-futures)")
     a = p.parse_args()
 
     channel_url = resolve_channel_url(a.channel)
@@ -126,12 +128,13 @@ def main():
         print("Fetching transcripts...\n")
         script_dir = os.path.dirname(os.path.abspath(__file__))
         fetch_script = os.path.join(script_dir, "yt-fetch.py")
-        t_dir = os.path.join(script_dir, "transcripts")
-        os.makedirs(t_dir, exist_ok=True)
         success, fail = 0, 0
         for v in videos:
-            cmd = [sys.executable, fetch_script, v["url"],
-                   "-o", os.path.join(t_dir, f"transcript_{v['id']}.md")]
+            cmd = [sys.executable, fetch_script, v["url"]]
+            if a.topic:
+                cmd += ["--topic", a.topic]
+            if a.channel:
+                cmd += ["--channel", a.channel]
             if a.lang:
                 cmd += ["--lang"] + a.lang
             print(f"  [{success+fail+1}/{len(videos)}] {v['title'][:50]}...", end=" ")

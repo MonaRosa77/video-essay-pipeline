@@ -28,7 +28,7 @@ python3 ~/video-essay-pipeline/yt-channel.py <channel> --sort popular --limit <N
 
 If no channel, check what transcripts already exist on GitHub for this topic area:
 ```bash
-git ls-tree -r --name-only origin/main transcripts/<topic>/
+git ls-tree -r --name-only origin/main research-topics/<topic>/transcripts/
 ```
 List them and ask the user which to include, or if they want to provide URLs.
 
@@ -41,7 +41,7 @@ python3 ~/video-essay-pipeline/yt-fetch.py <url> --no-timestamps --topic <topic>
 Use subagents to parallelize: launch up to 3 fetch+analyze tasks simultaneously using the Task tool.
 
 ### 4. Analyze each video
-For each transcript, generate an analysis using the appropriate domain skill. Save analyses to the standard location.
+For each transcript, generate an analysis using the appropriate domain skill. Save analyses to `research-topics/<topic>/analyses/`.
 
 ### 5. Generate synthesis document
 After all individual analyses are complete, read them all and generate a synthesis document that:
@@ -85,14 +85,14 @@ Links to each analysis file.
 ```
 
 ### 6. Save synthesis
-Save to `research/<topic>/synthesis_<keyword>_<date>.md`
+Save to `research-topics/<topic>/research/synthesis_<keyword>_<date>.md`
 
 Create the directory if it doesn't exist.
 
 ### 7. Commit and clean up
 Commit all new content to GitHub:
 ```bash
-git add transcripts/ analyses/ research/
+git add research-topics/
 git commit -m "Research: <topic> (<N> videos)"
 ```
 The post-commit hook auto-pushes. Then clean up local content:

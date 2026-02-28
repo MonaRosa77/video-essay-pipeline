@@ -6,17 +6,19 @@ A knowledge system that fetches video transcripts, analyzes arguments with domai
 
 | Domain | Topic slug | Channels |
 |--------|-----------|----------|
-| Philosophy & Ethics | `western-philosophy` | `michael-sugrue` |
+| Philosophy & Ethics | `philosophy` | `michael-sugrue`, `johnathan-bi` |
 | Trading & Order Flow | `trading` | `axia-futures`, `ict` |
 | Tech & AI Agents | `ai-agents` | `claude-code` |
 
 ## File Conventions
 
-- **Folders:** lowercase-kebab-case everywhere (`western-philosophy/michael-sugrue/`)
-- **Transcripts:** `transcript_<video_id>.md` or `NN_<slug>.md` for ordered series
-- **Analyses:** `analysis_<keyword>_<video_id>.md`
-- **Essays:** `essay_<keyword>_<date>.md`
-- **Paths:** `<type>/<topic>/<channel>/` (e.g. `transcripts/trading/axia-futures/`)
+- **Folders:** lowercase-kebab-case everywhere
+- **Structure:** `research-topics/<topic>/<type>/` (e.g. `research-topics/trading/transcripts/`)
+- **No channel subdirectories** — channel is encoded in filenames
+- **Transcripts:** `transcript_<channel>_<video_id>.md` or `NN_<channel>_<slug>.md` for ordered series
+- **Analyses:** `analysis_<channel>_<keyword>_<video_id>.md`
+- **Essays:** `essay_<channel>_<keyword>_<date>.md`
+- **Research:** keep as-is (already descriptive)
 
 ## Quality Standards
 
@@ -31,13 +33,13 @@ Content (transcripts, analyses, essays, research) lives on **GitHub only** — n
 
 - **After creating content:** `git add` → `git commit` → auto-pushed by post-commit hook → `git sparse-checkout reapply` removes local copies
 - **To read content:** `git checkout origin/main -- <path>` to pull temporarily, or `git show origin/main:<path>` to read without checkout
-- **To list remote content:** `git ls-tree -r --name-only origin/main <dir>/`
+- **To list remote content:** `git ls-tree -r --name-only origin/main research-topics/<topic>/<type>/`
 
 ## Scripts
 
 ```bash
-python3 yt-fetch.py <url_or_id> [--lang zh en] [--no-timestamps] [--topic western-philosophy] [--channel michael-sugrue]
-python3 yt-channel.py <@handle_or_url> [--sort popular] [--limit 20] [--fetch]
+python3 yt-fetch.py <url_or_id> [--lang zh en] [--no-timestamps] [--topic philosophy] [--channel michael-sugrue]
+python3 yt-channel.py <@handle_or_url> [--sort popular] [--limit 20] [--fetch] [--topic trading] [--channel axia-futures]
 ```
 
 ## Slash Commands
