@@ -69,7 +69,7 @@ def main():
         return
 
     file_path = tool_input.get("file_path", "")
-    if "analyses/" not in file_path:
+    if "/analyses/" not in file_path:
         print(json.dumps({"decision": "approve"}))
         return
 
