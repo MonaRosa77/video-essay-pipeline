@@ -9,6 +9,7 @@ A knowledge system that fetches video transcripts, analyzes arguments with domai
 | Philosophy & Ethics | `philosophy` | `michael-sugrue`, `johnathan-bi` |
 | Trading & Order Flow | `trading` | `axia-futures`, `ict` |
 | Tech & AI Agents | `ai-agents` | `claude-code` |
+| World Politics & History | `world-politics-and-history` | `predictive-history` |
 
 ## File Conventions
 
